@@ -200,15 +200,15 @@
         <div class="img-box">
           <img class="header-img" src="./static/portrail.png" alt="">
         </div>
-        <span class="name">张三同学</span>
+        <span class="name"><span id="userName">张三</span>同学</span>
       </div>
       <div class="save-box">
         <div class="save-1">在QQ浏览器通过免费阅读</div>
         <div class="save-2">共节省</div>
-        <div class="save-3"><span>55.55</span>元</div>
+        <div class="save-3"><span id="saveMoney">55.55</span>元</div>
         <div class="save-4">
           <img src="./static/good.png" alt="">
-          <span>超过69%的阅读用户</span>
+          <span>超过<span id="beyondUser">69</span>%的阅读用户</span>
         </div>
       </div>
       <div class="pic-box">
@@ -223,8 +223,8 @@
         </div>
         <div class="pic-desc">
           <div class="pic-desc-left">
-            <div>杀死一只知更鸟</div>
-            <div>总价值<span class="pic-desc-span">120</span>元</div>
+            <div id="firstNovel">杀死一只知更鸟</div>
+            <div>总价值<span class="pic-desc-span" id="firstValue">120</span>元</div>
           </div>
           <div class="pic-desc-right">
             <div>真的很赞</div>
@@ -243,8 +243,8 @@
         </div>
         <div class="pic-desc">
           <div class="pic-desc-left">
-            <div>杀死一只知更鸟</div>
-            <div>总价值<span class="pic-desc-span">120</span>元</div>
+            <div id="topNovel">杀死一只知更鸟</div>
+            <div>总价值<span class="pic-desc-span" id="topValue">120</span>元</div>
           </div>
           <div class="pic-desc-right">
             <div>真的很赚</div>
@@ -254,9 +254,9 @@
       <div>
         <div class="summary-box">
           <div class="summary-1">TA在QQ浏览器最喜欢看的品类是</div>
-          <div class="summary-2">历史</div>
+          <div class="summary-2" id="likeType">历史</div>
           <div class="summary-3">TA很特别</div>
-          <div class="summary-3">仅有8.9%的用户与TA兴趣相同</div>
+          <div class="summary-3">仅有<span id="likeRate">8.9%</span>的用户与TA兴趣相同</div>
           <div class="summary-3">这些人还会阅读</div>
         </div>
       </div>
@@ -266,8 +266,8 @@
         </div>
         <div class="bottom-text">
           <div class="bottom-text-top">
-            <div class="bottom-text-top-left">杀死一只知更鸟</div>
-            <div class="bottom-text-top-right">总价值<span class="pic-desc-span">120</span>元</div>
+            <div class="bottom-text-top-left" id="valueName">杀死一只知更鸟</div>
+            <div class="bottom-text-top-right">总价值<span class="pic-desc-span" id="valueMoney">120</span>元</div>
           </div>
           <div class="bottom-text-bottom">
             涉及种族歧视与滥判无辜。学者指出哈珀李着墨于阶级、勇气、同理心。
@@ -280,5 +280,34 @@
       </div>
     </div>
   </div>
+  <script>
+    function getRequest() {   
+       var url = window.location.search;
+       var theRequest = new Object();   
+       if (url.indexOf("?") != -1) {   
+          var str = url.substr(1);   
+          strs = str.split("&");   
+          for(var i = 0; i < strs.length; i ++) {
+             theRequest[strs[i].split("=")[0]]=decodeURI(strs[i].split("=")[1]);
+          }   
+       }   
+       return theRequest;   
+    }
+
+    let paramObj = getRequest();
+    console.log(paramObj);
+
+    function setHTMlText() {
+      Object.keys(paramObj).forEach(item => {
+        if (item && paramObj[item]) {
+          let element = document.getElementById(item);
+          if (element) {
+            element.innerHTML = paramObj[item];
+          }
+        }
+      })
+    }
+    setHTMlText()
+  </script>
 </body>
 </html>
