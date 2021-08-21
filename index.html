@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .name-box {
+      height: 100px;
+      width: 400px;
+      background-color: rgb(211, 134, 115);
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin-left: 20px;
+      align-self: flex-start;
+    }
+    .img-box {
+      height: 80px;
+      width: 80px;
+    }
+    .header-img {
+      height: 100%;
+      width: 100%;
+    }
+    .name {
+      color: white;
+      font-size: xxx-large;
+      font-weight: 600;
+    }
+    .save-box {
+      margin-top: 40px;
+      height: 500px;
+      width: 100%;
+      
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .save-1 {
+      color: rgb(211, 134, 115);
+      margin-top: 40px;
+      font-size: 50px;
+    }
+    .save-2 {
+      color: rgb(211, 134, 115);
+      font-size: 90px;
+    }
+    .save-3 {
+      color: rgb(211, 134, 115);
+      font-size: 90px;
+    }
+    .save-4 {
+      font-size: 35px;
+      display: flex;
+      align-items: center;
+    }
+    .pic-box {
+      padding: 20px;
+      box-shadow: 2px 2px 5px 5px rgb(199, 196, 196);
+    }
+    .pic-text {
+      font-size: 40px;
+      color:rgb(211, 134, 115);
+      font-weight: 700;
+    }
+    .pic-1 {
+      width: 100%;
+      height: 400px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .pic-left {
+      width: 200px;
+      height: 350px;
+      border-radius: 30px;
+      overflow: hidden;
+    }
+    .pic-right {
+      width: 300px;
+      height: 300px;
+    }
+    .pic-block {
+      width: 150px;
+      height: 50px;
+    }
+    .img-1 {
+      height: 100%;
+      width: 100%;
+    }
+    .pic-desc {
+      height: 200px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .pic-desc-left {
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .pic-desc-right {
+      width: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 40px;
+      font-weight: 700;
+      color:rgb(211, 134, 115);
+    }
+    .pic-desc-span {
+      color:rgb(211, 134, 115);
+    }
+    .pic-box-2 {
+      margin-top: 80px;
+    }
+    .summary-box {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .summary-1 {
+      font-size: 40px;
+      color:rgb(249, 101, 77);
+    }
+    .summary-2 {
+      font-size: 70px;
+      color:rgb(249, 101, 77);
+    }
+    .summary-3 {
+      font-size: 50px;
+      color:rgb(249, 101, 77);
+    }
+    .bottom-box {
+      padding: 20px;
+      box-shadow: 2px 2px 5px 5px rgb(199, 196, 196);
+      display: flex;
+    }
+    .bottom-text {
+      width: 400px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .bottom-text-top {
+      width: 100%;
+      height: 80px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .bottom-text-top-left {
+      font-size: 30px;
+      font-weight: 700;
+    }
+    .bottom-text-top-right {
+      background-color: rgb(255, 236, 233);
+      font-size: 25px;
+      border-radius: 10px;
+    }
+    .bottom-text-bottom {
+      width: 85%;
+      font-size: 20px;
+      color: gray;
+    }
+    .bottom-button {
+      margin-top: 50px;
+      background-color: rgb(219, 119, 99);
+      height: 140px;
+      width: 70%;
+      border-radius: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+    }
+    .bottom-button-text {
+      color: white;
+      font-size: 25px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <img src="./static/header.png">
+    <div class="box">
+      <div class="name-box">
+        <div class="img-box">
+          <img class="header-img" src="./static/portrail.png" alt="">
+        </div>
+        <span class="name">张三同学</span>
+      </div>
+      <div class="save-box">
+        <div class="save-1">在QQ浏览器通过免费阅读</div>
+        <div class="save-2">共节省</div>
+        <div class="save-3"><span>55.55</span>元</div>
+        <div class="save-4">
+          <img src="./static/good.png" alt="">
+          <span>超过69%的阅读用户</span>
+        </div>
+      </div>
+      <div class="pic-box">
+        <span class="pic-text">TA在QQ浏览器看过的第一本小说是</span>
+        <div class="pic-1">
+          <div class="pic-left">
+            <img src="./static/pic1.png" alt="" class="img-1">
+          </div>
+          <div class="pic-right">
+            <img src="./static/panada.png" alt="" class="img-1">
+          </div>
+        </div>
+        <div class="pic-desc">
+          <div class="pic-desc-left">
+            <div>杀死一只知更鸟</div>
+            <div>总价值<span class="pic-desc-span">120</span>元</div>
+          </div>
+          <div class="pic-desc-right">
+            <div>真的很赞</div>
+          </div>
+        </div>
+      </div>
+      <div class="pic-box pic-box-2">
+        <span class="pic-text">TA在QQ浏览器看过价值最高小说是</span>
+        <div class="pic-1">
+          <div class="pic-left">
+            <img src="./static/pic1.png" alt="" class="img-1">
+          </div>
+          <div class="pic-right">
+            <img src="./static/pig.png" alt="" class="img-1">
+          </div>
+        </div>
+        <div class="pic-desc">
+          <div class="pic-desc-left">
+            <div>杀死一只知更鸟</div>
+            <div>总价值<span class="pic-desc-span">120</span>元</div>
+          </div>
+          <div class="pic-desc-right">
+            <div>真的很赚</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="summary-box">
+          <div class="summary-1">TA在QQ浏览器最喜欢看的品类是</div>
+          <div class="summary-2">历史</div>
+          <div class="summary-3">TA很特别</div>
+          <div class="summary-3">仅有8.9%的用户与TA兴趣相同</div>
+          <div class="summary-3">这些人还会阅读</div>
+        </div>
+      </div>
+      <div class="bottom-box">
+        <div class="bottom-pic">
+          <img src="./static/bottom.png" alt="">
+        </div>
+        <div class="bottom-text">
+          <div class="bottom-text-top">
+            <div class="bottom-text-top-left">杀死一只知更鸟</div>
+            <div class="bottom-text-top-right">总价值<span class="pic-desc-span">120</span>元</div>
+          </div>
+          <div class="bottom-text-bottom">
+            涉及种族歧视与滥判无辜。学者指出哈珀李着墨于阶级、勇气、同理心。
+          </div>
+        </div>
+      </div>
+      <div class="bottom-button">
+        <div class="bottom-button-text">分享我的阅读书单</div>
+        <div class="bottom-button-text">免广告阅读该本小说</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
