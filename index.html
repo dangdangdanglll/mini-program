@@ -16,7 +16,7 @@
       border-radius: 100px;
       display: flex;
       align-items: center;
-      justify-content: space-around;
+      justify-content: center;
       margin-left: 20px;
       align-self: flex-start;
     }
@@ -32,6 +32,7 @@
       color: white;
       font-size: xxx-large;
       font-weight: 600;
+      margin-left: 20px;
     }
     .save-box {
       margin-top: 40px;
@@ -95,7 +96,7 @@
       width: 100%;
     }
     .pic-desc {
-      height: 200px;
+      height: 100px;
       width: 100%;
       display: flex;
       justify-content: space-between;
@@ -175,39 +176,51 @@
       font-size: 20px;
       color: gray;
     }
+    .bottom-block {
+      height: 140px;
+    }
     .bottom-button {
+      position: fixed;
+      margin:0 auto;
+      bottom: 0;
       margin-top: 50px;
       background-color: rgb(219, 119, 99);
       height: 140px;
-      width: 70%;
+      width: 99%;
       border-radius: 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-around;
+      justify-content: center;
     }
     .bottom-button-text {
       color: white;
+      margin-top: 10px;
       font-size: 25px;
     }
   </style>
 </head>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
 <body>
   <div>
-    <img src="./header.png">
     <div class="box">
+      <div>
+        <img src="./static/header.png">
+      </div>
       <div class="name-box">
         <div class="img-box">
-          <img class="header-img" src="./portrail.png" alt="">
+          <img class="header-img" src="./static/portrail.png" alt="">
         </div>
-        <span class="name"><span id="userName">张三</span>同学</span>
+        <div>
+          <span class="name"><span id="userName">张三</span>同学</span>
+        </div>
       </div>
       <div class="save-box">
         <div class="save-1">在QQ浏览器通过免费阅读</div>
         <div class="save-2">共节省</div>
         <div class="save-3"><span id="saveMoney">55.55</span>元</div>
         <div class="save-4">
-          <img src="./good.png" alt="">
+          <img src="./static/good.png" alt="">
           <span>超过<span id="beyondUser">69</span>%的阅读用户</span>
         </div>
       </div>
@@ -215,10 +228,10 @@
         <span class="pic-text">TA在QQ浏览器看过的第一本小说是</span>
         <div class="pic-1">
           <div class="pic-left">
-            <img src="./pic1.png" alt="" class="img-1">
+            <img id="imgFirst" src="./static/pic1.png" alt="" class="img-1">
           </div>
           <div class="pic-right">
-            <img src="./panada.png" alt="" class="img-1">
+            <img src="./static/panada.png" alt="" class="img-1">
           </div>
         </div>
         <div class="pic-desc">
@@ -235,10 +248,10 @@
         <span class="pic-text">TA在QQ浏览器看过价值最高小说是</span>
         <div class="pic-1">
           <div class="pic-left">
-            <img src="./pic1.png" alt="" class="img-1">
+            <img id="imgTop" src="./static/pic1.png" alt="" class="img-1">
           </div>
           <div class="pic-right">
-            <img src="./pig.png" alt="" class="img-1">
+            <img src="./static/pig.png" alt="" class="img-1">
           </div>
         </div>
         <div class="pic-desc">
@@ -256,31 +269,39 @@
           <div class="summary-1">TA在QQ浏览器最喜欢看的品类是</div>
           <div class="summary-2" id="likeType">历史</div>
           <div class="summary-3">TA很特别</div>
-          <div class="summary-3">仅有<span id="likeRate">8.9</span>%的用户与TA兴趣相同</div>
+          <div class="summary-3">仅有<span id="likeRate">8.9%</span>的用户与TA兴趣相同</div>
           <div class="summary-3">这些人还会阅读</div>
         </div>
       </div>
       <div class="bottom-box">
         <div class="bottom-pic">
-          <img src="./bottom.png" alt="">
+          <img id="imgRecommon" src="./static/bottom.png" alt="">
         </div>
         <div class="bottom-text">
           <div class="bottom-text-top">
             <div class="bottom-text-top-left" id="valueName">杀死一只知更鸟</div>
             <div class="bottom-text-top-right">总价值<span class="pic-desc-span" id="valueMoney">120</span>元</div>
           </div>
-          <div class="bottom-text-bottom">
+          <div id="valueDesc" class="bottom-text-bottom">
             涉及种族歧视与滥判无辜。学者指出哈珀李着墨于阶级、勇气、同理心。
           </div>
         </div>
       </div>
-      <div class="bottom-button">
-        <div class="bottom-button-text">分享我的阅读书单</div>
-        <div class="bottom-button-text">免广告阅读该本小说</div>
-      </div>
+      <div class="bottom-block"></div>
+    </div>
+    <div id="oldUser" class="bottom-button">
+      <div class="bottom-button-text">分享我的阅读书单</div>
+      <div class="bottom-button-text">免广告阅读该本小说</div>
+    </div>
+    <div id="newUser" class="bottom-button">
+      <div class="bottom-button-text">进入QQ浏览器</div>
+      <div class="bottom-button-text">立刻免费无广告阅读该本小说</div>
     </div>
   </div>
   <script>
+    let userId;
+    let isOldUser = true;
+    let resInfo;
     function getRequest() {   
        var url = window.location.search;
        var theRequest = new Object();   
@@ -295,7 +316,6 @@
     }
 
     let paramObj = getRequest();
-    console.log(paramObj);
 
     function setHTMlText() {
       Object.keys(paramObj).forEach(item => {
@@ -307,7 +327,106 @@
         }
       })
     }
-    setHTMlText()
+    function isShowOldButton() {
+      userId = paramObj.userId;
+      userId = parseInt(userId)
+      if (userId && (userId < 0 || userId > 32)){
+        isOldUser = false;
+      }
+      let oldElement = document.getElementById("oldUser");
+      let newElement = document.getElementById("newUser");
+      if (isOldUser) {
+        newElement.style.display = "none";
+      } else {
+        oldElement.style.display = "none";
+      }
+    }
+    isShowOldButton();
+    setHTMlText();
+
+    function Ajax(obj){
+      this.method = obj.method || '';
+      this.url = obj.url || '';
+      this.callback = obj.callback || '';
+      this.data = obj.data || '';
+    };
+    Ajax.prototype.send = function(method,url,callback,data){
+      var method = method || this.method;
+      var data = data || this.data;
+      var url = url || this.url;
+      var callback = callback || this.callback;
+      var xhr = new XMLHttpRequest();//新建ajax请求，不兼容IE7以下
+      xhr.onreadystatechange = function(){//注册回调函数
+        if(xhr.readyState === 4){
+          if(xhr.status === 200)
+            callback(xhr.responseText);
+          else
+            alert('服务器未打开，请运行node server.js');
+        }
+      }
+      if(method === 'get'){//如果是get方法，需要把data中的数据转化作为url传递给服务器
+        if(typeof data === 'object'){
+          var data_send = '?';
+          for(var key in data){
+            data_send+=key+'='+data[key];
+            data_send+='&';
+          }
+          data_send = data_send.slice(0,-1);
+          console.log(data_send);
+        }
+        xhr.open(method,url+data_send,true);
+        xhr.send(null);
+      }else if(method === 'post'){//如果是post，需要在头中添加content-type说明
+          xhr.open(method,url,true);
+          xhr.setRequestHeader('Content-Type','application/json');
+          xhr.send(JSON.stringify(data));//发送的数据需要转化成JSON格式
+      }else {
+        console.log('不识别的方法:'+method);
+        return fasle;
+      }
+    }
+    var ajax = new Ajax({
+      method:'get',//设置ajax方法
+      // url:'https://freered.testsite.woa.com/trpc',//设置通讯地址
+      url: 'http://localhost:3001/trpc',
+      callback:function(res){//设置回调函数
+        getRomotePic(res);
+      },
+      data: {
+        'service': 'trpc.trpcclient.trpccall.FreeRead',//需要传递的数据
+        'method': 'GetUserStatistics',
+        'userId': userId,
+      }
+    })
+    if (!isNaN(userId)) {
+      ajax.send();
+    }
+    function getRomotePic(res) {
+      let resData = JSON.parse(res);
+      let firstPic = resData.recentBooks[resData.recentBooks.length - 1].cover;
+      let topPic = resData.books[0].cover;
+      let recommonPic = resData.recommendBooks.cover;
+      if (firstPic && topPic && recommonPic) {
+        let eleFirst = document.getElementById('imgFirst');
+        let eleTop = document.getElementById('imgTop');
+        let eleRecommon = document.getElementById('imgRecommon');
+        eleFirst.src = firstPic;
+        eleTop.src = topPic;
+        eleRecommon.src = recommonPic;
+      }
+    }
+    function clickHandle() {
+      wx.miniProgram.navigateTo({
+        url:'/pages/index/index',           //指定跳转至小程序页面的路径
+        success: function(){
+            console.log('success');   //页面跳转成功的回调函数
+        }
+      });
+    }
+    let oldButton = document.getElementById("oldUser");
+    let newButton = document.getElementById("newUser");
+    oldButton.addEventListener('click',clickHandle);
+    newButton.addEventListener('click',clickHandle);
   </script>
 </body>
 </html>
