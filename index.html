@@ -387,8 +387,8 @@
     }
     var ajax = new Ajax({
       method:'get',//设置ajax方法
-      // url:'https://freered.testsite.woa.com/trpc',//设置通讯地址
-      url: 'http://localhost:3001/trpc',
+      url:'https://freered.testsite.woa.com/trpc',//设置通讯地址
+      // url: 'http://localhost:3001/trpc',
       callback:function(res){//设置回调函数
         getRomotePic(res);
       },
